@@ -4,7 +4,7 @@ const generateValueBasedOnPlaceholder = (
 ) => {
   switch (placeholder) {
     case "single-parent":
-      return answers["single-parent"] === "yes" ? "who has children" : "";
+      return answers["single-parent"] === "yes" ? "who has children" : " ";
     default:
       return answers[placeholder];
   }

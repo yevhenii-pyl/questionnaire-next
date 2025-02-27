@@ -11,6 +11,7 @@
   border: var(--button-border);
   border-radius: 1.6rem;
   box-shadow: var(--button-shadow);
+  cursor: pointer;
 }
 
 .button:first-letter {
@@ -20,4 +21,9 @@
 .button:active {
   background: var(--button-background-active);
   color: var(--button-text-active);
+}
+
+.button:disabled {
+  color: red;
+  cursor: not-allowed;
 }

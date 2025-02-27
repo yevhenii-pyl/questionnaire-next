@@ -1,17 +1,35 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 
 import getDynamicTitle from "@/helpers/getDynamicTitle";
 
 import styles from "./Title.module.css";
 
-export default function Title({ title }: { title: string }) {
-  const [dynamicTitle, setDynamicTitle] = useState<string>(title);
+type TitleProps = {
+  title: string;
+  children: ReactNode;
+};
+
+export default function Title({ title, children }: TitleProps) {
+  const [dynamicTitle, setDynamicTitle] = useState<string | null>(null);
 
   useEffect(() => {
     const updatedTitle = getDynamicTitle(title);
     setDynamicTitle(updatedTitle);
   }, [title]);
 
-  return <h1 className={styles.title}>{dynamicTitle}</h1>;
+  if (!dynamicTitle) {
+    return (
+      <h1 className={styles.title}>
+        <span className={styles.loader} />
+      </h1>
+    );
+  }
+
+  return (
+    <>
+      <h1 className={styles.title}>{dynamicTitle}</h1>
+      {children}
+    </>
+  );
 }

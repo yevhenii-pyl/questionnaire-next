@@ -9,6 +9,7 @@ export type Question = {
   id: string;
   type: QuestionType;
   title: string;
+  subtitle?: string;
   topic: string | "info";
   options?: string[];
   next: {

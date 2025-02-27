@@ -28,17 +28,20 @@ export default async function QuestionPage({
   if (!question) return notFound();
 
   const {
-    title,
-    type,
     id: questionId,
+    type,
     topic,
+    title,
+    subtitle,
     next,
   } = question as unknown as Question;
 
   return (
     <div className={styles.questionContainer}>
       <Image src={Logo} width={24} height={24} alt="Nebula Logo" />
-      <Title title={title} />
+      <Title title={title}>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+      </Title>
 
       <Answer type={type} id={questionId} topic={topic} next={next} />
     </div>
