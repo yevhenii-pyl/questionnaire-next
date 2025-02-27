@@ -1,0 +1,6 @@
+.title {
+  font-size: clamp(2rem, 1.5rem + 2vw, 2.4rem);
+  font-weight: 700;
+  align-self: flex-start;
+  color: var(--title);
+}

@@ -1,0 +1,23 @@
+.button {
+  width: 100%;
+  max-width: 33rem;
+  height: 6.4rem;
+  max-height: 6.4rem;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--button-text);
+  background-color: var(--button-background-default);
+  border: var(--button-border);
+  border-radius: 1.6rem;
+  box-shadow: var(--button-shadow);
+}
+
+.button:first-letter {
+  text-transform: uppercase;
+}
+
+.button:active {
+  background: var(--button-background-active);
+  color: var(--button-text-active);
+}
