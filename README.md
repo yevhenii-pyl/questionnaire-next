@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adding a New Question or Answer Component
 
-## Getting Started
+Data is king, to add a new question to existing config (or create a new config), please, follow the following convention:
 
-First, run the development server:
+## 1. Extend the Question Config File
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+To add a new question to the existing configuration (or create a new configuration), follow this convention:
+
+```ts
+{
+  id: string;           // Required for navigation between questions
+  type: string;         // Question type (e.g., 'multi-select', 'input', 'select-one', etc.)
+  title: string;        // The question to ask the user
+  subtitle?: string;    // Optional: Any additional information or statement to follow the question
+  topic: string | "info"; // Topic category for saving the data (Use 'info' for informational screens, this data will not be saved to storages)
+  options?: string[];   // Optional: If the question includes options, list them here as an array of strings
+  next: {               // Navigation logic based on user answer
+    [key: string]: string; // Map user answer to the next question's ID
+  };
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Example configuration:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```ts
+{
+  id: "1",
+  type: "select-one",
+  title: "What is your favorite color?",
+  subtitle: "Choose one option.",
+  topic: "preferences",
+  options: ["Red", "Blue", "Green", "Yellow"],
+  next: {
+    "option-1": "2", // If 'Red' is selected, go to questionId-2
+    "option-2": "3", // If 'Blue' is selected, go to questionId-3
+    ...
+  }
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 2. Update the questionComponents Object
 
-## Learn More
+In the types/Question.ts file, extend the questionComponents object with the appropriate component name corresponding to your question type.
 
-To learn more about Next.js, take a look at the following resources:
+Example for adding a new question type, multi-select:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```ts
+export const questionComponents = {
+  SelectOne: "select-one",
+  Input: "input",
+  MultiSelect: "multi-select", // Add your new question type here
+  // ... other question types
+} as const;
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 3. Create the Question Component
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+In the components folder, create a new React component corresponding to the new question type, following the general naming convention (e.g., MultiSelect, MyNewComponent, etc.).

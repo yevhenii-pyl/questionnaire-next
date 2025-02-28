@@ -1,45 +1,52 @@
 "use client";
 
-import { ComponentType } from "react";
+import { ComponentType, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useAppDispatch } from "@/lib/hooks";
-import { saveAnswer } from "@/lib/features/AnswersState/AnswersSlice";
 
-import questions from "@/public/config/questions.json";
+import { Question } from "@/types/Question";
+import saveUserAnswer from "@/helpers/saveUserAnswer";
+import redirectOnAnswer from "@/helpers/redirectOnAnswer";
 
 type AnswerWrapperProps = {
-  id: string;
-  topic: string;
-  next: Record<string, string>;
+  question: Question;
 };
 
 export default function withAnswerLogic(
   WrappedComponent: ComponentType<{
-    answers: string[];
+    question: Question;
     onAnswer: (answer: string) => void;
+    isLoading: boolean;
   }>
 ) {
-  return function AnswerWrapper({ id, topic, next }: AnswerWrapperProps) {
+  return function AnswerWrapper({ question }: AnswerWrapperProps) {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    const handleAnswer = (answer: string) => {
-      if (topic !== "info") {
-        dispatch(saveAnswer({ topic, answer }));
-      }
+    const [isLoading, setIsLoading] = useState(false);
 
-      if (next.default) {
-        router.push(`/question/${next.default}`);
-      } else {
-        router.push(
-          `/question/${next[`option-${answers.indexOf(answer) + 1}`]}`
-        );
-      }
+    const handleAnswer = (answer: string) => {
+      setIsLoading(true);
+
+      const { topic, next } = question;
+
+      saveUserAnswer({ topic, answer, dispatch });
+
+      redirectOnAnswer({
+        next,
+        router,
+        answer,
+        options: question.options || [],
+      });
     };
 
-    const answers = questions.find((q) => q.id === id)!.options || [];
-
-    return <WrappedComponent onAnswer={handleAnswer} answers={answers} />;
+    return (
+      <WrappedComponent
+        onAnswer={handleAnswer}
+        question={question}
+        isLoading={isLoading}
+      />
+    );
   };
 }

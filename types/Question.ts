@@ -1,9 +1,10 @@
-const QuestionType = {
+export const questionComponents = {
   SelectOne: "select-one",
   Input: "input",
 } as const;
 
-export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType];
+export type QuestionType =
+  (typeof questionComponents)[keyof typeof questionComponents];
 
 export type Question = {
   id: string;

@@ -1,0 +1,49 @@
+.container {
+  width: clamp(28rem, 90%, 33rem);
+  padding: 0 1.5rem 1.4rem;
+  margin: 20svh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  cursor: default;
+}
+
+.tite {
+  font-size: clamp(1.5rem, 1rem + 2vw, 2rem);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1rem + 2vw, 1.5rem);
+}
+
+.button {
+  text-decoration: none;
+  width: 100%;
+  max-width: 16rem;
+  height: 3.3rem;
+  max-height: 3.3rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--button-text);
+  background-color: var(--button-background-default);
+  border: var(--button-border);
+  border-radius: 1.6rem;
+  box-shadow: var(--button-shadow);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  outline: none;
+  transform: scale(0.98);
+}

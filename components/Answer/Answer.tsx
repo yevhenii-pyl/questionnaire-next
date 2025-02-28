@@ -1,26 +1,18 @@
-import { FC } from "react";
+import dynamic from "next/dynamic";
 
-import { QuestionType } from "@/types/Question";
-
-import SelectOne from "@/components/Answers/SelectOne/SelectOne";
-
-const questionsMap: Record<
-  QuestionType,
-  FC<{ id: string; topic: string; next: Record<string, string> }>
-> = {
-  "select-one": SelectOne,
-  input: () => <div>Input</div>,
-};
+import { Question } from "@/types/Question";
+import getComponentFromQuestionType from "@/helpers/getComponentFromQuestionType";
 
 type AnswerProps = {
-  type: QuestionType;
-  id: string;
-  topic: string;
-  next: Record<string, string>;
+  question: Question;
 };
 
-export default function Answer({ type, id, topic, next }: AnswerProps) {
-  const AnswerComponent = questionsMap[type];
+export default function Answer({ question }: AnswerProps) {
+  const componentName = getComponentFromQuestionType(question.type);
 
-  return <AnswerComponent id={id} topic={topic} next={next} />;
+  const AnswerComponent = dynamic<{ question: Question }>(
+    () => import(`@/components/Answers/${componentName}/${componentName}`)
+  );
+
+  return <AnswerComponent question={question} />;
 }

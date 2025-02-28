@@ -1,6 +1,6 @@
 .questionContainer {
   width: clamp(28rem, 90%, 33rem);
-  padding: 1.4rem 1.5rem;
+  padding: 0 1.5rem 1.4rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

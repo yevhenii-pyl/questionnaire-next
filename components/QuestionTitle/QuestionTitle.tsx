@@ -3,14 +3,14 @@ import { useEffect, useState, ReactNode } from "react";
 
 import getDynamicTitle from "@/helpers/getDynamicTitle";
 
-import styles from "./Title.module.css";
+import styles from "./QuestionTitle.module.css";
 
-type TitleProps = {
+type QuestionTitleProps = {
   title: string;
   children: ReactNode;
 };
 
-export default function Title({ title, children }: TitleProps) {
+export default function QuestionTitle({ title, children }: QuestionTitleProps) {
   const [dynamicTitle, setDynamicTitle] = useState<string | null>(null);
 
   useEffect(() => {

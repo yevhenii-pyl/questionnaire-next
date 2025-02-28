@@ -12,6 +12,9 @@
   border-radius: 1.6rem;
   box-shadow: var(--button-shadow);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 
 .button:first-letter {
@@ -21,9 +24,9 @@
 .button:active {
   background: var(--button-background-active);
   color: var(--button-text-active);
+  transform: scale(0.98);
 }
 
-.button:disabled {
-  color: red;
-  cursor: not-allowed;
+.button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }

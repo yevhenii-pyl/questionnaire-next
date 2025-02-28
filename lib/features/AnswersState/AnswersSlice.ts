@@ -3,9 +3,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface AnswersState {
+export type AnswersState = {
   [topic: string]: string;
-}
+};
 
 const initialState: AnswersState =
   typeof window !== "undefined"

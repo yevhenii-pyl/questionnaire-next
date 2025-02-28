@@ -1,15 +1,22 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import Logo from "@/public/logo-black.svg";
 import questions from "@/public/config/questions.json";
 
 import { Question } from "@/types/Question";
 
-import Title from "@/components/Title/Title";
+import QuestionTitle from "@/components/QuestionTitle/QuestionTitle";
 import Answer from "@/components/Answer/Answer";
 
 import styles from "./page.module.css";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const { id } = await params;
+
+  return {
+    title: `Question ${id} | Questionnaire`,
+    description: "Answer this question to continue...",
+  };
+}
 
 export async function generateStaticParams() {
   return questions.map((question) => ({
@@ -24,26 +31,18 @@ export default async function QuestionPage({
 }) {
   const { id } = await params;
 
-  const question = questions.find((q) => q.id === id);
+  const question = questions.find((q) => q.id === id) as unknown as Question;
   if (!question) return notFound();
 
-  const {
-    id: questionId,
-    type,
-    topic,
-    title,
-    subtitle,
-    next,
-  } = question as unknown as Question;
-
   return (
-    <div className={styles.questionContainer}>
-      <Image src={Logo} width={24} height={24} alt="Nebula Logo" />
-      <Title title={title}>
-        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-      </Title>
+    <main className={styles.questionContainer}>
+      <QuestionTitle title={question.title}>
+        {question.subtitle && (
+          <p className={styles.subtitle}>{question.subtitle}</p>
+        )}
+      </QuestionTitle>
 
-      <Answer type={type} id={questionId} topic={topic} next={next} />
-    </div>
+      <Answer question={question} />
+    </main>
   );
 }
