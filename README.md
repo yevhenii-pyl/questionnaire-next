@@ -40,7 +40,7 @@ To add a new question to the existing configuration (or create a new configurati
 
 ## 2. Update the questionComponents Object
 
-In the types/Question.ts file, extend the questionComponents object with the appropriate component name corresponding to your question type.
+In the `types/Question.ts` file, extend the questionComponents object with the appropriate component name corresponding to your question type.
 
 Example for adding a new question type, multi-select:
 
@@ -56,3 +56,11 @@ export const questionComponents = {
 ## 3. Create the Question Component
 
 In the components folder, create a new React component corresponding to the new question type, following the general naming convention (e.g., MultiSelect, MyNewComponent, etc.).
+
+# Adding a new config
+
+Just name it `questions.json` and drop at `public/config`, previous config can be renamed with `-old` tag or whatever.
+
+# Changing redirection
+
+Currently, as there is no need at the home page, at the `next.config.ts` there is a permanent redirect from `/` to `/question/1`. Feel free to change the config in case there is a need to adjust redirection behaviour.
