@@ -15,7 +15,10 @@ To add a new question to the existing configuration (or create a new configurati
   topic: string | "info"; // Topic category for saving the data (Use 'info' for informational screens, this data will not be saved to storages)
   options?: string[];   // Optional: If the question includes options, list them here as an array of strings
   next: {               // Navigation logic based on user answer
-    [key: string]: string; // Map user answer to the next question's ID
+     // Map user answer to the next question's ID
+     // Here are two things to consider
+     // 1 - if you don't want to branch on user anser - just provide a "default": "id-to-redirect"
+     // 2 - if you need to branch, provide a topic of question that this redirection depends on, and then - options with redirection (check example)
   };
 }
 ```
@@ -30,11 +33,12 @@ To add a new question to the existing configuration (or create a new configurati
   subtitle: "Choose one option.",
   topic: "preferences",
   options: ["Red", "Blue", "Green", "Yellow"],
-  next: {
-    "option-1": "2", // If 'Red' is selected, go to questionId-2
-    "option-2": "3", // If 'Blue' is selected, go to questionId-3
-    ...
-  }
+    "next": {
+      "traits-tend-to-overthink": {
+        "yes": "8",
+        "no": "15"
+      }
+    }
 }
 ```
 
