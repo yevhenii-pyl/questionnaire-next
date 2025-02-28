@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-
-import questions from "@/public/config/questions.json";
+import cn from "classnames";
 
 import { Question } from "@/types/Question";
 
@@ -8,6 +7,8 @@ import QuestionTitle from "@/components/QuestionTitle/QuestionTitle";
 import Answer from "@/components/Answer/Answer";
 
 import styles from "./page.module.css";
+import getQuestionnaire from "@/helpers/getQuestionnaire";
+import getQuestionById from "@/helpers/getQuestionById";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = await params;
@@ -19,7 +20,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 export async function generateStaticParams() {
-  return questions.map((question) => ({
+  const questions = await getQuestionnaire();
+
+  return questions.map((question: Question) => ({
     id: question.id,
   }));
 }
@@ -27,15 +30,20 @@ export async function generateStaticParams() {
 export default async function QuestionPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
+  questions: Question[];
 }) {
   const { id } = await params;
+  const question = await getQuestionById(id);
 
-  const question = questions.find((q) => q.id === id) as unknown as Question;
   if (!question) return notFound();
 
   return (
-    <main className={styles.questionContainer}>
+    <main
+      className={cn(styles.questionContainer, {
+        [styles.centered]: !!question.subtitle,
+      })}
+    >
       <QuestionTitle title={question.title}>
         {question.subtitle && (
           <p className={styles.subtitle}>{question.subtitle}</p>

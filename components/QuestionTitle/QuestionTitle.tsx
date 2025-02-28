@@ -11,20 +11,12 @@ type QuestionTitleProps = {
 };
 
 export default function QuestionTitle({ title, children }: QuestionTitleProps) {
-  const [dynamicTitle, setDynamicTitle] = useState<string | null>(null);
+  const [dynamicTitle, setDynamicTitle] = useState<string | null>(title);
 
   useEffect(() => {
     const updatedTitle = getDynamicTitle(title);
     setDynamicTitle(updatedTitle);
   }, [title]);
-
-  if (!dynamicTitle) {
-    return (
-      <h1 className={styles.title}>
-        <span className={styles.loader} />
-      </h1>
-    );
-  }
 
   return (
     <>

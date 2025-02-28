@@ -1,22 +1,36 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { AnswersState } from "@/lib/features/AnswersState/AnswersSlice";
 
 type RedirectOnAnswerProps = {
-  next: Record<string, string>;
+  next: Record<string, Record<string, string>>;
   router: AppRouterInstance;
   answer: string;
-  options: string[];
+  answersState: AnswersState;
 };
 
 const redirectOnAnswer = ({
   next,
   router,
   answer,
-  options,
+  answersState,
 }: RedirectOnAnswerProps) => {
   if (next.default) {
-    router.push(`/question/${next.default}`);
+    if (typeof next.default === "string") {
+      if (next.default === "summary") {
+        router.push(`/summary`);
+      } else {
+        router.push(`/question/${next.default}`);
+      }
+    }
   } else {
-    router.push(`/question/${next[`option-${options.indexOf(answer) + 1}`]}`);
+    const connectedTopic = Object.keys(next)[0];
+    const connectedTopicAnswer = next[connectedTopic]
+      ? answer
+      : (answersState[connectedTopic] as string);
+
+    const nextQuestionID = next[connectedTopic][connectedTopicAnswer];
+
+    router.push(`/question/${nextQuestionID}`);
   }
 };
 

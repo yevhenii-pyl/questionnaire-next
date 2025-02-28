@@ -13,7 +13,5 @@ export type Question = {
   subtitle?: string;
   topic: string | "info";
   options?: string[];
-  next: {
-    [key: string]: string;
-  };
+  next: Record<string, Record<string, string>>;
 };

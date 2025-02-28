@@ -3,7 +3,7 @@
 import { ComponentType, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 import { Question } from "@/types/Question";
 import saveUserAnswer from "@/helpers/saveUserAnswer";
@@ -22,6 +22,7 @@ export default function withAnswerLogic(
 ) {
   return function AnswerWrapper({ question }: AnswerWrapperProps) {
     const dispatch = useAppDispatch();
+    const answersState = useAppSelector((state) => state.answers);
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ export default function withAnswerLogic(
         next,
         router,
         answer,
-        options: question.options || [],
+        answersState,
       });
     };
 

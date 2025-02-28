@@ -60,6 +60,10 @@ In the components folder, create a new React component corresponding to the new 
 # Adding a new config
 
 Just name it `questions.json` and drop at `public/config`, previous config can be renamed with `-old` tag or whatever.
+In case you need to switch from using locally provided config:
+
+1. Adjust `CONFIG_LOCATION` at `env` file.
+2. Adjust `getQuestionnaire` helper. It fetches config based on the `CONFIG_LOCATION` env.
 
 # Changing redirection
 
