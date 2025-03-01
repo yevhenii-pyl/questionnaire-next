@@ -2,7 +2,7 @@
 
 Simple as it is:
 
-1. Add envs (check .env.template): you know the drill - [localhost](http://localhost:3000) for app url and `local` for config location.
+1. Add envs (check .env.template): you know the drill - http://localhost:3000 for app url and `local` for config location.
 2. Run `npm run build && npm run start`
 
 # Adding a New Question or Answer Component
