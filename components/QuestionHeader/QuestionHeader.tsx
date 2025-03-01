@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 import cn from "classnames";
 
@@ -12,8 +12,11 @@ import ThemeImage from "../ThemeImage/ThemeImage";
 
 export default function QuestionHeader() {
   const router = useRouter();
+  const path = usePathname();
 
-  const isInitialQuestion = false;
+  const id = path.split("/")[2];
+
+  const isInitialQuestion = id === "1";
 
   return (
     <nav className={styles.header}>

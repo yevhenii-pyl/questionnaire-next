@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Question } from "@/types/Question";
 
 import QuestionContainer from "@/containers/Question/Question";
+import localConfig from "@/public/config/questions.json";
 
 export async function generateMetadata({
   params,
@@ -18,17 +19,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api`, {
-    method: "GET",
-    credentials: "same-origin",
-    cache: "no-store",
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch the questions");
-  }
-
-  const questions = await response.json();
+  const questions = localConfig as unknown as Question[];
 
   return questions.map((question: Question) => ({
     id: question.id,
@@ -58,7 +49,6 @@ export default async function QuestionPage({
   params,
 }: {
   params: Promise<{ id: string }>;
-  questions: Question[];
 }) {
   const { id } = await params;
   const question = await getQuestion(id);

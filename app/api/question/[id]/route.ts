@@ -1,6 +1,8 @@
 import { Question } from "@/types/Question";
 import { NextResponse } from "next/server";
 
+import config from "@/public/config/questions.json";
+
 async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -20,7 +22,7 @@ async function GET(
       throw new Error("Failed to fetch the questions");
     }
 
-    const questions: Question[] = await response.json();
+    const questions: Question[] = config as unknown as Question[];
 
     question = questions.find((q) => q.id === id);
   } catch (err) {
