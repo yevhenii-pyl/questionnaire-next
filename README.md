@@ -1,3 +1,10 @@
+# Building the project
+
+Simple as it is:
+
+1. Add envs (check .env.template): you know the drill - [localhost](http://localhost:3000) for app url and `local` for config location.
+2. Run `npm run build && npm run start`
+
 # Adding a New Question or Answer Component
 
 Data is king, to add a new question to existing config (or create a new config), please, follow the following convention:
@@ -68,8 +75,8 @@ Question component selection is based on `Answer` component factory. Just add a 
 Just name it `questions.json` and drop at `public/config`, previous config can be renamed with `-old` tag or whatever.
 In case you need to switch from using locally provided config:
 
-1. Adjust `CONFIG_LOCATION` at `env` file.
-2. Adjust `getQuestionnaire` api handler. It fetches config based on the `CONFIG_LOCATION` env.
+1. Adjust the way config is fetched. Currently it's used as a `localConfig` imported directly from the public folder to build static pages at `app/question/[id]`.
+2. Adjust the api getter at `app/api` - it checks CONFIG_LOCATION env and downloads the config from the appropriate resource (check the function, it's really straightforward as for now)
 
 # Changing redirection
 
