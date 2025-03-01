@@ -6,20 +6,14 @@ import { useRouter } from "next/navigation";
 import cn from "classnames";
 
 import LogoBlack from "@/public/logo-black.svg";
-import LogoWhite from "@/public/logo-white.svg";
+// import LogoWhite from "@/public/logo-white.svg";
 
 import styles from "./QuestionHeader.module.css";
 
-export default function QuestionHeader({
-  id,
-  whiteTheme,
-}: {
-  id: string;
-  whiteTheme: boolean;
-}) {
+export default function QuestionHeader() {
   const router = useRouter();
 
-  const isInitialQuestion = Number(id) === 1;
+  const isInitialQuestion = false;
 
   return (
     <nav className={styles.header}>
@@ -33,7 +27,7 @@ export default function QuestionHeader({
         <i className={styles.backIcon} />
       </button>
       <Image
-        src={whiteTheme ? LogoWhite : LogoBlack}
+        src={LogoBlack}
         width={24}
         height={24}
         alt="Nebula Logo"
