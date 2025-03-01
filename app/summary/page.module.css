@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  max-width: 33rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 10svh auto 0;
+  cursor: default;
+}
+
+.answersList {
+  list-style: none;
+}
+
+.answer {
+  font-size: clamp(1rem, 1rem + 2vw, 1.5rem);
+  padding: 1rem 1rem 1rem 0;
+}
+
+.answer::first-letter {
+  text-transform: capitalize;
+}

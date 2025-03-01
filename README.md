@@ -61,6 +61,8 @@ export const questionComponents = {
 
 Question component selection is based on `Answer` component factory. Just add a new screen type, create appropriate component and set it at the answer factory.
 
+## 4. Check and adjust `mapQuestionTopicToName` helper to correctly display user answers at the quiz end.
+
 # Adding a new config
 
 Just name it `questions.json` and drop at `public/config`, previous config can be renamed with `-old` tag or whatever.

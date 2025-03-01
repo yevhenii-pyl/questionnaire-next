@@ -26,8 +26,15 @@ const AnswersSlice = createSlice({
         sessionStorage.setItem("answers", JSON.stringify(state));
       }
     },
+    resetStore: () => {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("answers", JSON.stringify({}));
+      }
+
+      return {};
+    },
   },
 });
 
-export const { saveAnswer } = AnswersSlice.actions;
+export const { saveAnswer, resetStore } = AnswersSlice.actions;
 export default AnswersSlice.reducer;
