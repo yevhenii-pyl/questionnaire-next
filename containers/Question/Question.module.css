@@ -1,0 +1,21 @@
+.questionContainer {
+  width: clamp(28rem, 90%, 33rem);
+  padding: 0 1.5rem 1.4rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.subtitle {
+  font-size: clamp(1.8em, 1rem + 2vw, 2rem);
+  font-weight: 700;
+  color: var(--text-color);
+  cursor: default;
+}
+
+.questionContainer.centered {
+  text-align: center;
+}

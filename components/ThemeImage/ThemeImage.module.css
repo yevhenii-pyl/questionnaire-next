@@ -1,0 +1,15 @@
+.icon {
+  margin: 0 auto;
+}
+
+.imgLight {
+  display: none;
+}
+
+.imgLight.active {
+  display: unset;
+}
+
+.imgLight[class*="active"] ~ .imgDark {
+  display: none;
+}

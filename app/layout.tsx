@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import StoreProvider from "@/app/StoreProvider";
-
 import { Open_Sans as OpenSans } from "next/font/google";
+
+import StoreProvider from "@/app/StoreProvider";
+import { ThemeProvider } from "@/app/providers/ThemeProvider";
 
 import "./globals.css";
 
@@ -23,7 +24,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={`${openSans.variable}`}>{children}</body>
+        <ThemeProvider>
+          <body className={`${openSans.variable}`}>{children}</body>
+        </ThemeProvider>
       </StoreProvider>
     </html>
   );

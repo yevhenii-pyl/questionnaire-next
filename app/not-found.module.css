@@ -28,8 +28,8 @@
   padding: 0.6rem 0.8rem;
   font-size: 1.4rem;
   font-weight: 400;
-  color: var(--button-text);
-  background-color: var(--button-background-default);
+  color: var(--button-color);
+  background-color: var(--button-background);
   border: var(--button-border);
   border-radius: 1.6rem;
   box-shadow: var(--button-shadow);
