@@ -67,7 +67,7 @@ Just name it `questions.json` and drop at `public/config`, previous config can b
 In case you need to switch from using locally provided config:
 
 1. Adjust `CONFIG_LOCATION` at `env` file.
-2. Adjust `getQuestionnaire` helper. It fetches config based on the `CONFIG_LOCATION` env.
+2. Adjust `getQuestionnaire` api handler. It fetches config based on the `CONFIG_LOCATION` env.
 
 # Changing redirection
 
