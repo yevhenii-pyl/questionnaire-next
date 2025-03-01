@@ -1,18 +1,18 @@
-import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 import { Question } from "@/types/Question";
-import getComponentFromQuestionType from "@/helpers/getComponentFromQuestionType";
+
+import SelectOne from "@/components/Answers/SelectOne/SelectOne";
 
 type AnswerProps = {
   question: Question;
 };
 
 export default function Answer({ question }: AnswerProps) {
-  const componentName = getComponentFromQuestionType(question.type);
-
-  const AnswerComponent = dynamic<{ question: Question }>(
-    () => import(`@/components/Answers/${componentName}/${componentName}`)
-  );
-
-  return <AnswerComponent question={question} />;
+  switch (question.type) {
+    case "select-one":
+      return <SelectOne question={question} />;
+    default:
+      return notFound();
+  }
 }

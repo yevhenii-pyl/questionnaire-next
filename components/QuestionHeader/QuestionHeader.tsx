@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import cn from "classnames";
 
 import LogoBlack from "@/public/logo-black.svg";
-// import LogoWhite from "@/public/logo-white.svg";
+import LogoWhite from "@/public/logo-white.svg";
 
 import styles from "./QuestionHeader.module.css";
+import ThemeImage from "../ThemeImage/ThemeImage";
 
 export default function QuestionHeader() {
   const router = useRouter();
@@ -26,12 +26,12 @@ export default function QuestionHeader() {
       >
         <i className={styles.backIcon} />
       </button>
-      <Image
-        src={LogoBlack}
+      <ThemeImage
         width={24}
         height={24}
         alt="Nebula Logo"
-        className={styles.logo}
+        srcLight={LogoWhite}
+        srcDark={LogoBlack}
       />
     </nav>
   );

@@ -24,7 +24,10 @@ const redirectOnAnswer = ({
     }
   } else {
     const connectedTopic = Object.keys(next)[0];
-    const connectedTopicAnswer = next[connectedTopic]
+
+    const connectedTopicAnswer = Object.keys(next[connectedTopic]).includes(
+      answer
+    )
       ? answer
       : (answersState[connectedTopic] as string);
 
