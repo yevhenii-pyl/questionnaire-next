@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: "Nice little questionnaire",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

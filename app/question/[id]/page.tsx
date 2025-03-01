@@ -42,6 +42,7 @@ export default async function QuestionPage({
     <main
       className={cn(styles.questionContainer, {
         [styles.centered]: !!question.subtitle,
+        [styles.whiteTheme]: question.topic === "info",
       })}
     >
       <QuestionTitle title={question.title}>

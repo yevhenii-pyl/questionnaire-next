@@ -18,6 +18,18 @@
   --button-text-active: #fbfbff;
 
   font-size: 62.5%;
+
+  --white-theme-text-color: #fbfbff;
+  --white-theme-button-background: #fbfbff;
+  --white-theme-button-color: #6a3aa2;
+  --white-theme-button-shadow: 2px 2px 6px rgba(216, 214, 214, 0.25);
+  --white-theme-background: linear-gradient(
+    180deg,
+    rgba(20, 19, 51, 1) 10%,
+    rgba(32, 34, 97, 1) 30%,
+    rgba(84, 60, 151, 1) 60%,
+    rgba(105, 57, 161, 1) 90%
+  );
 }
 
 html,
@@ -27,10 +39,21 @@ body {
 }
 
 body {
+  height: 100svh;
   background: var(--background);
   font-family: var(--font-open-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body:has(main[class*="whiteTheme"]) {
+  background: var(--white-theme-background);
+  color: var(--white-theme-text-color);
+}
+
+body:has(main[class*="whiteTheme"]) i[class*="backIcon"] {
+  border: solid var(--white-theme-text-color);
+  border-width: 0 3px 3px 0;
 }
 
 * {

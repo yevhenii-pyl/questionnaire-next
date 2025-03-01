@@ -17,3 +17,12 @@
 .questionContainer.centered {
   text-align: center;
 }
+
+.questionContainer.whiteTheme h1 {
+  color: var(--white-theme-text-color);
+}
+
+.questionContainer.whiteTheme button {
+  background-color: var(--white-theme-button-background);
+  color: var(--white-theme-button-color);
+}

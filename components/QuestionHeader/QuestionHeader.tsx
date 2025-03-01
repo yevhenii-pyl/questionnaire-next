@@ -2,19 +2,22 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 
 import cn from "classnames";
 
-import Logo from "@/public/logo-black.svg";
+import LogoBlack from "@/public/logo-black.svg";
+import LogoWhite from "@/public/logo-white.svg";
 
 import styles from "./QuestionHeader.module.css";
 
-export default function QuestionHeader() {
+export default function QuestionHeader({
+  id,
+  whiteTheme,
+}: {
+  id: string;
+  whiteTheme: boolean;
+}) {
   const router = useRouter();
-  const path = usePathname();
-
-  const id = path.split("/")[2];
 
   const isInitialQuestion = Number(id) === 1;
 
@@ -30,7 +33,7 @@ export default function QuestionHeader() {
         <i className={styles.backIcon} />
       </button>
       <Image
-        src={Logo}
+        src={whiteTheme ? LogoWhite : LogoBlack}
         width={24}
         height={24}
         alt="Nebula Logo"

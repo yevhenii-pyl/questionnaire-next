@@ -1,5 +1,4 @@
 "use client";
-import questions from "@/public/config/questions.json";
 
 import withAnswerLogic from "@/HOCs/withAnswerLogic";
 
@@ -17,7 +16,7 @@ function SelectOne({
   onAnswer: (answer: string) => void;
   isLoading: boolean;
 }) {
-  const answers = questions.find((q) => q.id === question.id)!.options || [];
+  const answers = question.options || [];
 
   return (
     <div className={styles.container}>
