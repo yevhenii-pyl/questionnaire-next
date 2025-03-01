@@ -59,7 +59,7 @@ export const questionComponents = {
 
 ## 3. Create the Question Component
 
-In the components folder, create a new React component corresponding to the new question type, following the general naming convention (e.g., MultiSelect, MyNewComponent, etc.).
+Question component selection is based on `Answer` component factory. Just add a new screen type, create appropriate component and set it at the answer factory.
 
 # Adding a new config
 
