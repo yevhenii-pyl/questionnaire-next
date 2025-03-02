@@ -19,7 +19,7 @@ const topicToName: { [key in Topic]: string } = {
   relationship: "Relationship status",
   "single-parent": "You are a single parent",
   parent: "You are a parent",
-  "single-problem": "What do you feel about your relationsip:",
+  "single-problem": "What do you feel about your relationsip",
   "traits-tend-to-overthink": "You are an overthinker",
   "traits-emotional-control": "Emotional control is tricky for you",
   "traits-most-important": "Most important for you is",

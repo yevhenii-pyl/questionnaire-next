@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { resetStore } from "@/lib/features/AnswersState/AnswersSlice";
@@ -10,14 +9,15 @@ import Button from "@/components/Button/Button";
 import mapQuestionTopicToName, {
   Topic,
 } from "@/helpers/mapQuestionTopicToName";
+
 import styles from "./page.module.css";
+import useMounted from "@/hooks/useMounted";
 
 export default function Summary() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const answersState = useAppSelector((state) => state.answers);
-
-  const [hasMounted, setHasMounted] = useState(false);
+  const { hasMounted } = useMounted();
 
   const handleRestart = () => {
     dispatch(resetStore());
@@ -25,10 +25,6 @@ export default function Summary() {
   };
 
   const userAnswers = Object.entries(answersState);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   if (!hasMounted) {
     return <div className={styles.container}>Loading...</div>;
